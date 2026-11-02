@@ -1,0 +1,61 @@
+.nav-cta{background:var(--navy);color:#fff!important;padding:12px 19px;border-radius:9px}
+.hero{background:radial-gradient(circle at 85% 12%,rgba(239,168,23,.13),transparent 26%),linear-gradient(135deg,#f8fbff,#fff 55%,#fffaf0);padding:88px 0 82px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center}
+.eyebrow{display:inline-block;color:#bb7b00;font-size:11px;font-weight:850;letter-spacing:2px;margin-bottom:16px}
+.hero-lead{max-width:520px;color:var(--muted);font-size:17px;line-height:1.8;margin:0 0 29px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.hero-note{display:flex;align-items:center;gap:9px;color:#63738a;font-size:12px;margin-top:25px}
+.check{display:grid;place-items:center;background:#e7f6ee;color:#20824e;width:22px;height:22px;border-radius:50%;font-weight:900}
+.card-top{font-size:10px;letter-spacing:1.4px;font-weight:850;color:#7b8798;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.live-dot{height:7px;width:7px;background:#36aa75;border-radius:50%}
+.course-icon{width:45px;height:45px;display:grid;place-items:center;border-radius:12px;font-weight:900;font-size:15px;flex-shrink:0}
+.gold{background:#fff4d9;color:#ba7c00}
+.blue{background:#e5efff;color:#1d5db0}
+.purple{background:#f1e9ff;color:#7c42bd}
+.arrow{margin-left:auto;color:#8c98a9}
+.section{padding:94px 0}
+.section-heading{max-width:650px;margin-bottom:42px}
+.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.service-symbol{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;font-size:22px;font-weight:850}
+.gold-bg{background:#fff3d5;color:#c3870d}
+.blue-bg{background:#e8f0ff;color:#225ea9}
+.purple-bg{background:#f1e8ff;color:#824bc3}
+.courses-section{background:var(--soft)}
+.centered{text-align:center;margin-inline:auto}
+.centered p{margin-inline:auto}
+.course-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.tile-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:11px;font-weight:900;margin-bottom:9px}
+.icon-blue{background:#e5efff;color:#1e5cae}
+.icon-gold{background:#fff1d0;color:#b87a00}
+.icon-green{background:#e3f7ed;color:#168050}
+.icon-purple{background:#f0e7ff;color:#824bc3}
+.tile-arrow{position:absolute;right:16px;top:17px;color:#8996a7}
+.course-footer{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:30px;font-size:13px;color:var(--muted)}
+.course-footer a{font-weight:800;color:#bd7e00}
+.how-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:90px;align-items:center}
+.contact-note{display:flex;align-items:center;gap:12px;margin-top:32px}
+.contact-icon{display:grid;place-items:center;width:43px;height:43px;background:rgba(255,255,255,.12);border-radius:12px;color:#ffc13d}
+.contact-note strong,.contact-note small{display:block}
+.contact-note strong{font-size:13px}
+.contact-note small{font-size:11px;color:#d1dced;margin-top:3px}
+.sectors-section{background:#f5f8fc}
+.sector-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0 28px;border-top:1px solid #dfe6ef}
+.sector-cta{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:27px}
+.sector-cta p{margin:0;color:var(--muted);font-size:14px}
+.internship-section{background:#fff}
+.internship-intro{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.internship-intro h2{color:var(--navy);font-size:clamp(32px,4vw,45px);line-height:1.12;margin:0 0 18px}
+.internship-intro h2 span{color:#d69815}
+.internship-intro>div>p{max-width:530px;color:var(--muted);line-height:1.8;font-size:14px}
+.internship-types{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.internship-types article{padding:18px;border:1px solid var(--line);border-radius:8px}
+.internship-types article>span{font-size:10px;font-weight:850;letter-spacing:1px;color:#bd7b00}
+.internship-types h3{font-size:15px;line-height:1.4;color:var(--navy);margin:8px 0}
+.internship-types p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}
+.opportunity-heading{display:flex;align-items:baseline;gap:18px;margin-top:52px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.opportunity-heading h3{margin:0;color:var(--navy);font-size:19px}
+.opportunity-heading p{margin:0;color:var(--muted);font-size:12px;line-height:1.6}
+.opportunity-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding-top:16px}
+.opportunity-status{display:inline-block;padding:3px 8px;border-radius:3px;background:#edf1f6;color:#536479;font-size:10px;font-weight:800}
+.status-open{background:#e5f5ec;color:#247348}
+.compact-form{border:1px solid var(--line);border-radius:8px;box-shadow:none;padding:24px}

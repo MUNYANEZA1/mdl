@@ -1,0 +1,63 @@
+@media(max-width:900px){.site-header{height:72px}.brand img{height:58px;width:145px}.menu-toggle{display:block}nav{display:none;position:absolute;left:15px;right:15px;top:66px;background:white;padding:18px;border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);flex-direction:column;align-items:stretch;gap:12px;max-height:calc(100vh - 82px);overflow-y:auto}nav.open{display:flex}.nav-cta{text-align:center}}
+@media(max-width:900px){.home-links{grid-template-columns:1fr 1fr}.service-list{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.home-links,.service-list,.course-category-grid{grid-template-columns:1fr}.pillar-link{gap:10px}.pillar-link small{max-width:230px}.course-category ul{columns:1}.standalone-form{padding:21px 16px}.page-hero.section{padding:62px 0}.page-hero h1{font-size:38px}.internship-types{grid-template-columns:1fr}}
+@media(max-width:380px){.page-hero h1{font-size:34px}.hero h1{font-size:35px}}
+@media(max-width:900px){.sector-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.internship-intro{gap:30px}}
+@media(max-width:900px){.internship-form-wrap{grid-template-columns:1fr;gap:15px}}
+@media(max-width:900px){.opportunity-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.sector-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.sector-cta{align-items:flex-start;flex-direction:column}}
+@media(max-width:700px){.internship-intro,.request-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.internship-types{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.opportunity-heading{display:block}}
+@media(max-width:700px){.opportunity-heading p{margin-top:7px}}
+@media(max-width:700px){.opportunity-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.internship-form-wrap{margin-top:38px}}
+@media(max-width:700px){.request-grid .registration-form,.compact-form{padding:21px 16px}}
+@media(max-width:800px){.admin-columns{grid-template-columns:1fr}}
+@media(max-width:800px){.admin-main{padding-top:30px}}
+@media(max-width:500px){.admin-heading{align-items:flex-start;gap:12px}}
+@media(max-width:500px){.admin-heading h1{font-size:22px}}
+@media(max-width:500px){.admin-label{font-size:9px}}
+@media(max-width:500px){.admin-item-actions{align-items:stretch;flex-direction:column}}
+@media(max-width:500px){.admin-item-actions select,.admin-item-actions .btn{width:100%}}
+@media(max-width:500px){.admin-publish{align-self:flex-start}}
+@media(max-width:900px){.hero-grid{gap:35px}}
+@media(max-width:900px){.hero{padding:65px 0}}
+@media(max-width:900px){.course-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.how-grid{gap:40px}}
+@media(max-width:900px){.register-grid{gap:35px}}
+@media(max-width:900px){.service-card{padding:22px}}
+@media(max-width:900px){.brand img{width:155px}}
+@media(max-width:700px){.container{width:min(100% - 30px,560px)}}
+@media(max-width:700px){.site-header{height:72px}}
+@media(max-width:700px){.brand img{height:58px;width:145px}}
+@media(max-width:700px){.menu-toggle{display:block}}
+@media(max-width:700px){nav{display:none;position:absolute;left:15px;right:15px;top:66px;background:white;padding:18px;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);flex-direction:column;align-items:stretch;gap:16px}}
+@media(max-width:700px){nav.open{display:flex}}
+@media(max-width:700px){.nav-cta{text-align:center}}
+@media(max-width:700px){.hero{padding:52px 0 58px}}
+@media(max-width:700px){.hero-grid{grid-template-columns:1fr;gap:36px}}
+@media(max-width:700px){.hero h1{font-size:42px}}
+@media(max-width:700px){.hero-lead{font-size:15px}}
+@media(max-width:700px){.hero-card{transform:none;padding:18px}}
+@media(max-width:700px){.trust-items{grid-template-columns:repeat(2,1fr);row-gap:18px}}
+@media(max-width:700px){.trust-items div:nth-child(2){border:0}}
+@media(max-width:700px){.section{padding:65px 0}}
+@media(max-width:700px){.section-heading h2,.how-grid h2,.register-copy h2{font-size:35px}}
+@media(max-width:700px){.service-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.service-card p{min-height:0}}
+@media(max-width:700px){.course-grid{gap:10px}}
+@media(max-width:700px){.course-tile{padding:15px;min-height:160px}}
+@media(max-width:700px){.course-tile strong{font-size:13px}}
+@media(max-width:700px){.how-grid,.register-grid{grid-template-columns:1fr;gap:35px}}
+@media(max-width:700px){.registration-form{padding:22px 17px}}
+@media(max-width:700px){.form-row{grid-template-columns:1fr;gap:0}}
+@media(max-width:700px){.footer-main{grid-template-columns:1fr 1fr;gap:30px}}
+@media(max-width:700px){.footer-brand{grid-column:1/-1}}
+@media(max-width:700px){.footer-bottom{flex-direction:column;gap:5px}}
+@media(max-width:380px){.hero h1{font-size:35px}}
+@media(max-width:380px){.course-grid{grid-template-columns:1fr}}
+@media(max-width:380px){.course-tile{min-height:130px}}
+@media(max-width:380px){.trust-items span{font-size:11px}}

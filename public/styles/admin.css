@@ -1,0 +1,26 @@
+.admin-page{min-height:100vh;background:#f5f8fc}
+.admin-main{padding:46px 0 80px}
+.admin-label{font-size:11px;font-weight:850;letter-spacing:1px;color:var(--navy)}
+.admin-login{max-width:440px;margin:50px auto;padding:28px;border:1px solid var(--line);border-radius:8px;box-shadow:none}
+.admin-login h1,.admin-heading h1{font-size:27px;color:var(--navy);margin:0}
+.admin-dashboard{padding-top:12px}
+.admin-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}
+.admin-tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin-bottom:24px}
+.admin-tab{border:0;border-bottom:3px solid transparent;background:transparent;padding:12px 15px;color:var(--muted);font-weight:750;cursor:pointer}
+.admin-tab.active{color:var(--navy);border-bottom-color:var(--gold)}
+.admin-columns{display:grid;grid-template-columns:minmax(320px,.9fr) 1.1fr;gap:28px;align-items:start}
+.admin-columns .registration-form{padding:23px;border:1px solid var(--line);border-radius:8px;box-shadow:none}
+.admin-section-title{font-size:20px;color:var(--navy);margin:0 0 15px}
+.admin-list{display:flex;flex-direction:column;gap:12px}
+.admin-item{background:#fff;border:1px solid var(--line);border-radius:7px;padding:17px}
+.admin-item h3{margin:0 0 5px;color:var(--navy);font-size:16px}
+.admin-item p{margin:5px 0;color:var(--muted);font-size:12px;line-height:1.6}
+.admin-item-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px}
+.admin-item-actions select,.admin-item textarea,.admin-filters select{border:1px solid #dce3ed;border-radius:6px;padding:9px;background:#fff;color:var(--ink);font:inherit;font-size:12px}
+.admin-item .btn{padding:9px 13px}
+.admin-publish{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted)}
+.admin-item textarea{display:block;width:100%;margin-top:10px;min-height:62px;resize:vertical}
+.admin-filters{display:flex;gap:14px;flex-wrap:wrap}
+.admin-filters label{display:flex;align-items:center;gap:8px;color:var(--navy);font-size:12px;font-weight:750}
+.admin-feedback{color:var(--muted);font-size:13px}
+.applicant-item>a{color:#a76c00;font-weight:750;font-size:12px}

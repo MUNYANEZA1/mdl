@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>MDL Administration</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="admin-page">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="/" aria-label="MDL home"><img src="/mdl-logo.png" alt="Minds Digital Legacy"></a>
+      <span class="admin-label">ADMINISTRATION</span>
+    </div>
+  </header>
+  <main class="container admin-main">
+    <section class="registration-form admin-login" id="loginPanel">
+      <div class="form-heading"><h1>Administrator sign in</h1><p>Authorized MDL staff only.</p></div>
+      <form id="loginForm">
+        <label>Username<input name="username" required autocomplete="username"></label>
+        <label>Password<input name="password" type="password" required autocomplete="current-password"></label>
+        <button class="btn btn-primary submit-btn" type="submit">Sign in</button>
+        <p class="form-message" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+    <section class="admin-dashboard" id="dashboard" hidden>
+      <div class="admin-heading"><div><span class="eyebrow">MDL WORKSPACE</span><h1>Program management</h1></div><button class="btn btn-secondary" id="logoutButton" type="button">Sign out</button></div>
+      <div class="admin-tabs" role="tablist"><button class="admin-tab active" type="button" data-panel="opportunitiesPanel">Opportunities</button><button class="admin-tab" type="button" data-panel="applicationsPanel">Applications</button></div>
+      <section id="opportunitiesPanel" class="admin-panel">
+        <div class="admin-columns">
+          <form id="opportunityForm" class="registration-form">
+            <div class="form-heading"><h2>Publish an opportunity</h2><p>Only published records appear on the public internship page.</p></div>
+            <label>Title *<input name="title" required maxlength="190"></label>
+            <label>Department *<select name="department" required><option value="">Choose department</option><option>Software Development</option><option>Web Development</option><option>Mobile Application Development</option><option>IT Support and Networking</option><option>Cybersecurity</option><option>Data Analysis and Database Management</option><option>UI/UX and Graphic Design</option><option>Digital Marketing</option><option>Business Administration</option><option>Project Management</option><option>Research and Innovation</option><option>Digital Education and Training</option></select></label>
+            <label>Description *<textarea name="description" required maxlength="4000" rows="4"></textarea></label>
+            <label>Skills gained<textarea name="skills" maxlength="4000" rows="2"></textarea></label>
+            <label>Requirements<textarea name="requirements" maxlength="4000" rows="2"></textarea></label>
+            <div class="form-row"><label>Expected duration *<input name="expectedDuration" required maxlength="100"></label><label>Available places<input name="availablePlaces" type="number" min="0" max="65535"></label></div>
+            <div class="form-row"><label>Application deadline<input name="applicationDeadline" type="date"></label><label>Status *<select name="status" required><option>Coming Soon</option><option>Open</option><option>Closed</option></select></label></div>
+            <label class="consent"><input name="published" type="checkbox"><span>Publish this opportunity on the public site.</span></label>
+            <button class="btn btn-primary submit-btn" type="submit">Create opportunity</button><p class="form-message" role="status" aria-live="polite"></p>
+          </form>
+          <div><h2 class="admin-section-title">Current opportunities</h2><div id="adminOpportunityList" class="admin-list"></div></div>
+        </div>
+      </section>
+      <section id="applicationsPanel" class="admin-panel" hidden>
+        <div class="admin-filters"><label>Type<select id="typeFilter"><option value="">All types</option><option>Academic</option><option>Professional</option></select></label><label>Department<select id="departmentFilter"><option value="">All departments</option><option>Software Development</option><option>Web Development</option><option>Mobile Application Development</option><option>IT Support and Networking</option><option>Cybersecurity</option><option>Data Analysis and Database Management</option><option>UI/UX and Graphic Design</option><option>Digital Marketing</option><option>Business Administration</option><option>Project Management</option><option>Research and Innovation</option><option>Digital Education and Training</option></select></label></div>
+        <p id="applicationStatus" class="admin-feedback" role="status"></p><div id="applicationList" class="admin-list"></div>
+      </section>
+    </section>
+  </main>
+  <script type="module" src="/js/admin/main.js"></script>
+</body>
+</html>

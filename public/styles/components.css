@@ -1,0 +1,43 @@
+.course-choice{border:0;padding:0;background:transparent;color:var(--muted);font:inherit;font-size:12px;text-align:left;cursor:pointer}.course-choice:hover,.course-choice:focus-visible{color:#a76c00;text-decoration:underline}
+.pillar-link{display:flex;align-items:center;gap:14px;padding:14px 10px;border-bottom:1px solid #edf0f5}.pillar-link:last-child{border-bottom:0}.pillar-link>span{display:grid;place-items:center;width:38px;height:38px;flex-shrink:0;border-radius:8px;background:#fff3d5;color:#a97000;font-size:12px;font-weight:850}.pillar-link strong,.pillar-link small{display:block}.pillar-link strong{font-size:13px;color:var(--navy)}.pillar-link small{font-size:11px;color:var(--muted);line-height:1.5;margin-top:3px}.pillar-link>b{margin-left:auto;color:#929eac;font-weight:500}.home-links{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;border-top:1px solid var(--line)}.home-links a{display:flex;flex-direction:column;gap:8px;padding:20px 10px;border-bottom:1px solid var(--line)}.home-links strong{font-size:16px;color:var(--navy)}.home-links span{font-size:12px;color:var(--muted);line-height:1.7}.service-list{display:grid;grid-template-columns:1fr 1fr;gap:14px}.service-detail{position:relative;padding:22px;border:1px solid var(--line);border-radius:8px;background:#fff}.service-number{color:#b27600;font-size:11px;font-weight:850}.service-detail h2{color:var(--navy);font-size:19px;margin:6px 0}.service-detail>p,.service-detail dd{color:var(--muted);font-size:12px;line-height:1.75}.service-detail dl{margin:16px 0}.service-detail dt{color:var(--navy);font-size:11px;font-weight:800;margin-top:10px}.service-detail dd{margin:2px 0 0}.text-link{color:#a76c00;font-weight:800;font-size:12px}.sector-page-grid{margin-bottom:20px}.page-hero{background:linear-gradient(135deg,#f5f8fc,#fff 68%,#fff8e9)}.page-hero h1{font-size:clamp(36px,4.5vw,56px);line-height:1.1;color:var(--navy);margin:0 0 18px}.page-hero h1 span{color:#d69815}.page-hero p{max-width:680px;color:var(--muted);font-size:15px;line-height:1.8;margin:0 0 24px}.course-category-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.course-category{padding:20px;border:1px solid var(--line);border-radius:8px}.course-category h3{margin:0;color:var(--navy);font-size:16px}.course-category ul{columns:2;padding-left:18px;margin:12px 0 0;color:var(--muted);font-size:12px;line-height:1.9}.opportunity-title{margin:45px 0 5px;color:var(--navy);font-size:22px}.opportunity-summary{font-size:13px;color:var(--muted);line-height:1.7}.standalone-form{max-width:720px;padding:26px;border:1px solid var(--line);border-radius:8px;box-shadow:none}.wide-form{max-width:920px}.training-topics .service-card h2{font-size:17px;color:var(--navy);margin:4px 0 10px}
+.btn{display:inline-flex;justify-content:center;align-items:center;gap:14px;border-radius:10px;padding:14px 20px;font-weight:750;font-size:14px;border:1px solid transparent;cursor:pointer;transition:transform .18s,box-shadow .18s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--navy);color:white;box-shadow:0 8px 18px rgba(8,43,88,.14)}
+.btn-primary:hover{background:var(--navy2)}
+.btn-secondary{border-color:#d9e1eb;background:white;color:var(--navy)}
+.hero-card{background:#fff;border:1px solid #e9edf3;border-radius:22px;padding:25px;box-shadow:var(--shadow);transform:rotate(1deg)}
+.course-preview{display:flex;align-items:center;gap:14px;border:1px solid #edf0f5;border-radius:13px;padding:15px;margin:10px 0}
+.course-preview strong,.course-preview small{display:block}
+.course-preview strong{font-size:14px;color:var(--navy)}
+.course-preview small{font-size:12px;color:var(--muted);margin-top:2px}
+.custom-path{display:flex;align-items:center;gap:13px;padding:18px 10px 3px}
+.custom-path>span{font-size:28px;color:var(--gold)}
+.custom-path strong,.custom-path small{display:block}
+.custom-path strong{font-size:13px}
+.custom-path small{font-size:11px;color:var(--muted);line-height:1.5;margin-top:3px}
+.service-card{padding:27px;border:1px solid var(--line);border-radius:var(--radius);transition:box-shadow .2s,transform .2s}
+.service-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.service-card h3{font-size:18px;color:var(--navy);margin:20px 0 8px}
+.service-card p{font-size:13px;color:var(--muted);line-height:1.8;min-height:70px}
+.service-card>a{font-size:13px;font-weight:800;color:#bb7b00}
+.service-card>a span,.course-footer a span{padding-left:6px}
+.course-tile{text-align:left;position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:6px;min-height:175px;padding:21px;border:1px solid #e5eaf1;border-radius:15px;background:#fff;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s;color:var(--ink)}
+.course-tile:hover,.course-tile.selected{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 12px 25px rgba(8,43,88,.07)}
+.course-tile strong{font-size:14px;color:var(--navy)}
+.course-tile small{font-size:11px;color:var(--muted)}
+.how-grid .btn{margin-top:15px}
+.steps{display:flex;flex-direction:column;gap:0}
+.step{display:flex;gap:22px;padding:22px 0;border-bottom:1px solid var(--line)}
+.step:last-child{border-bottom:0}
+.step>span{font-size:13px;font-weight:900;color:#c88b13;background:#fff4d9;border-radius:10px;width:42px;height:42px;display:grid;place-items:center;flex-shrink:0}
+.step h3{font-size:16px;margin:0 0 5px;color:var(--navy)}
+.step p{font-size:13px;color:var(--muted);margin:0;line-height:1.7}
+.sector-item{position:relative;padding:22px 10px 24px 44px;border-bottom:1px solid #dfe6ef}
+.sector-item>span{position:absolute;left:2px;top:24px;color:#bd7b00;font-size:11px;font-weight:850}
+.sector-item h3{margin:0 0 6px;color:var(--navy);font-size:16px}
+.sector-item p{margin:0;color:var(--muted);font-size:12px;line-height:1.75}
+.opportunity-card{padding:18px;border:1px solid var(--line);border-radius:8px}
+.opportunity-card h4{margin:12px 0 4px;color:var(--navy);font-size:16px}
+.opportunity-card p{color:var(--muted);font-size:12px;line-height:1.7;margin:6px 0}
+.opportunity-card .opportunity-department{font-weight:750;color:#b27600}
+.opportunity-card small{display:block;color:#69788c;margin-top:12px;font-size:11px}
