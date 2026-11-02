@@ -1,11 +1,35 @@
+let csrfToken = "";
+
 export async function adminRequest(url, options = {}) {
+  const method = (options.method || "GET").toUpperCase();
+  const headers = { "Content-Type": "application/json", ...options.headers };
+  if (!["GET", "HEAD", "OPTIONS"].includes(method) && csrfToken) {
+    headers["X-CSRF-Token"] = csrfToken;
+  }
   const response = await fetch(url, {
     ...options,
-    headers: { "Content-Type": "application/json", ...options.headers }
+    credentials: "same-origin",
+    headers
   });
-  const result = await response.json();
-  if (!response.ok) throw new Error(result.message || "Request failed.");
+  let result;
+  try {
+    result = await response.json();
+  } catch {
+    throw new Error("The server returned an invalid response.");
+  }
+  if (!response.ok) {
+    if (response.status === 401) {
+      csrfToken = "";
+      document.dispatchEvent(new Event("mdl:admin-session-expired"));
+    }
+    throw new Error(result.message || "Request failed.");
+  }
+  if (typeof result.csrfToken === "string") csrfToken = result.csrfToken;
   return result;
+}
+
+export function clearAdminCsrfToken() {
+  csrfToken = "";
 }
 
 export function makeElement(tag, className = "", text = "") {

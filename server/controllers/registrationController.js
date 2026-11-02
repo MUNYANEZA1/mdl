@@ -12,11 +12,14 @@ async function createRegistration(req, res) {
   if ((email && !requiredText(email, 190)) || !validEmail(email)) {
     return res.status(400).json({ message: "Reba aderesi ya email wanditse." });
   }
-  if (!allowedCourses.includes(course) || !allowedModes.includes(learningMode) || !allowedLevels.includes(skillLevel)) {
+  if (typeof course !== "string" || !allowedModes.includes(learningMode) || !allowedLevels.includes(skillLevel)) {
     return res.status(400).json({ message: "Hari amakuru atemewe. Ongera ugerageze." });
   }
   if (consent !== true) return res.status(400).json({ message: "Ugomba kwemera ko MDL igukoresha amakuru mu kugusubiza." });
   try {
+    if (!allowedCourses.includes(course) && !await registrationModel.isPublishedCourse(course)) {
+      return res.status(400).json({ message: "Hari amakuru atemewe. Ongera ugerageze." });
+    }
     const registrationId = await registrationModel.createRegistration({
       fullName: String(fullName).trim(), phone: String(phone).trim(), email: email ? String(email).trim() : null,
       course, learningMode, skillLevel, preferredSchedule: preferredSchedule ? String(preferredSchedule).trim() : null,

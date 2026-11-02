@@ -9,6 +9,9 @@ MDL/
 ├── .env.example
 ├── .gitignore
 ├── database.sql                       # Additive MySQL schema
+├── database/
+│   └── migrations/
+│       └── 001_admin_dashboard.sql    # Additive dashboard tables
 ├── package-lock.json
 ├── package.json
 ├── README.md
@@ -19,19 +22,24 @@ MDL/
 │   │   └── database.js                # Shared MySQL pool
 │   ├── controllers/
 │   │   ├── adminController.js
+│   │   ├── adminOperationsController.js
 │   │   ├── internshipController.js
 │   │   ├── registrationController.js
 │   │   └── requestController.js
 │   ├── middleware/
-│   │   └── adminAuth.js               # Login, signed cookie and access guard
+│   │   └── adminAuth.js               # Login, database sessions, CSRF and role guards
 │   ├── models/
 │   │   ├── adminModel.js
+│   │   ├── adminOperationsModel.js
+│   │   ├── clientIdentity.js
 │   │   ├── internshipModel.js
 │   │   ├── registrationModel.js
 │   │   └── requestModel.js
 │   ├── routes/
 │   │   ├── adminRoutes.js
+│   │   ├── announcementRoutes.js
 │   │   ├── corporateTrainingRoutes.js
+│   │   ├── courseRoutes.js
 │   │   ├── internshipRoutes.js
 │   │   ├── registrationRoutes.js
 │   │   └── serviceRoutes.js
@@ -97,22 +105,21 @@ MDL/
 ## Run Locally
 
 1. Install Node.js 18+ and start MySQL (for example, through XAMPP).
-2. Import `database.sql` in phpMyAdmin or run it with the MySQL client. The statements create missing tables and do not drop existing registrations.
+2. Back up the `mdl_registration` database before applying schema changes. For a fresh database, import `database.sql`. For an existing installation, import `database/migrations/001_admin_dashboard.sql` into `mdl_registration` before deploying the updated server. It adds dashboard tables, backfills CRM links for existing service and corporate-training requests, and does not drop or rewrite the original request records.
 3. Copy `.env.example` to `.env` and set database credentials.
-4. Configure admin access with `ADMIN_USERNAME`, a random `MDL_ADMIN_SECRET`, and `ADMIN_PASSWORD_HASH`. Generate the scrypt hash with Node:
-   ```js
-   const crypto = require('node:crypto');
-   const salt = crypto.randomBytes(16).toString('hex');
-   const hash = crypto.scryptSync('your-long-unique-password', salt, 64).toString('hex');
-   console.log(`${salt}:${hash}`);
+4. Generate a one-time bootstrap token in PowerShell:
+   ```powershell
+   node -e "console.log(require('node:crypto').randomBytes(32).toString('hex'))"
    ```
-   Store `salt:hash` in `.env`, not the password. Admin access stays disabled until all three variables are configured.
+   Put the result in `.env` as `ADMIN_SETUP_TOKEN`, then restart the server.
 5. Run:
    ```bash
    npm install
    npm start
    ```
-6. Visit `http://localhost:3000`. Admin UI: `/admin.html`.
+6. Visit `http://localhost:3000/admin.html`, choose **Set up the first administrator**, and enter the token and administrator account details. The first account receives the Super Admin role. Remove `ADMIN_SETUP_TOKEN` from `.env` and restart the server immediately after setup.
+
+Passwords are hashed with Node's scrypt before storage. Admin sessions use random opaque tokens stored only as digests in MySQL, HTTP-only `SameSite=Strict` cookies, an eight-hour expiry, same-origin checks, and per-session CSRF tokens. Bootstrap is restricted by the environment token and a database-locked one-time setup guard. Keep `.env` private and use HTTPS in production.
 
 Development and verification commands:
 
@@ -129,12 +136,17 @@ npm test
 - Static service, sector and course content lives in `public/data/`. Internship opportunities are fetched from the database, not seeded in frontend data.
 - API paths remain `/api/registrations`, `/api/service-requests`, `/api/corporate-training-requests`, `/api/internship-opportunities`, `/api/internship-applications`, and `/api/admin/*`.
 - Database access is parameterized and isolated in models. The existing registration table/schema and endpoint have been preserved.
+- The admin dashboard uses the existing registration, service, corporate training and internship tables; management-only status, assignment, note and financial fields live in additive tables. Published database courses and homepage announcements are served through public read-only APIs.
+- Student records, courses, internship opportunities/applications, service requests, corporate training, client profiles, date-filtered reports, announcement publishing, staff accounts, roles and audit history have administrator screens and protected APIs. Staff access is limited to assigned records and restricted status/note updates.
 - Shared MDL tokens are defined in `public/styles/tokens.css`; `public/styles.css` imports the layout, component, form, page, admin and responsive modules.
 
 ## Current Boundaries
 
-- Admin UI manages internship opportunities and internship application status/internal notes. It does not yet manage course catalogs, service categories, corporate/service request queues, or summary statistics.
-- Internship file uploads are not implemented. Applicants are told not to submit sensitive documents; establish protected storage and upload validation before requesting CVs or school letters.
+- Internship document uploads and email notifications are not implemented. Applicants are told not to submit sensitive documents; establish private storage, file validation, and an authorized download endpoint before requesting CVs or school letters.
+- Website content management currently covers homepage announcements and published courses. Service/sector copy and company contact settings remain in the existing static public pages.
+- Financial fields distinguish estimates, proposals, and agreed values; there is no payment ledger, so reports do not claim actual revenue.
+- CSV reports are capped at 10,000 rows and explicitly mark truncated exports; narrow the date range for large datasets.
 - The privacy notice is an initial template. Add MDL's verified contact details and confirm lawful basis, retention and handling with Rwanda's current data-protection requirements before production use.
 - No internship openings are seeded. Only administrator-published opportunities appear; applications of interest do not guarantee placement.
-- Use HTTPS, a dedicated least-privilege database user, backups, monitoring and production-grade rate limiting/CSRF protections before deployment.
+- Database migration is manual and must be applied only after a verified backup. This workspace has no configured `.env` or database connection, so the migration and live workflows were not run here.
+- Use HTTPS, a dedicated least-privilege database user, backups, monitoring, and production-grade rate limiting before deployment.

@@ -18,36 +18,208 @@
     <section class="registration-form admin-login" id="loginPanel">
       <div class="form-heading"><h1>Administrator sign in</h1><p>Authorized MDL staff only.</p></div>
       <form id="loginForm">
-        <label>Username<input name="username" required autocomplete="username"></label>
+        <label>Username or email<input name="username" required autocomplete="username"></label>
         <label>Password<input name="password" type="password" required autocomplete="current-password"></label>
+        <button class="admin-password-toggle" type="button" data-password-toggle="loginForm">Show password</button>
         <button class="btn btn-primary submit-btn" type="submit">Sign in</button>
+        <p class="form-message" id="loginError" role="status" aria-live="polite"></p>
+      </form>
+      <button class="admin-setup-toggle" id="showSetupButton" type="button" hidden>Set up the first administrator</button>
+    </section>
+    <section class="registration-form admin-login" id="setupPanel" hidden>
+      <div class="form-heading"><h1>Set up the first administrator</h1><p>Use the one-time setup token supplied by the server administrator.</p></div>
+      <form id="setupForm">
+        <label>One-time setup token<input name="setupToken" type="password" required autocomplete="off"></label>
+        <label>Username<input name="username" required minlength="3" maxlength="64" pattern="[A-Za-z0-9._-]+" autocomplete="username"></label>
+        <label>Email<input name="email" type="email" required maxlength="190" autocomplete="email"></label>
+        <label>Password<input name="password" type="password" required minlength="12" maxlength="128" autocomplete="new-password"></label>
+        <button class="admin-password-toggle" type="button" data-password-toggle="setupForm">Show password</button>
+        <button class="btn btn-primary submit-btn" type="submit">Create administrator</button>
         <p class="form-message" role="status" aria-live="polite"></p>
       </form>
+      <button class="admin-setup-toggle" id="showLoginButton" type="button">Return to sign in</button>
     </section>
     <section class="admin-dashboard" id="dashboard" hidden>
-      <div class="admin-heading"><div><span class="eyebrow">MDL WORKSPACE</span><h1>Program management</h1></div><button class="btn btn-secondary" id="logoutButton" type="button">Sign out</button></div>
-      <div class="admin-tabs" role="tablist"><button class="admin-tab active" type="button" data-panel="opportunitiesPanel">Opportunities</button><button class="admin-tab" type="button" data-panel="applicationsPanel">Applications</button></div>
-      <section id="opportunitiesPanel" class="admin-panel">
-        <div class="admin-columns">
-          <form id="opportunityForm" class="registration-form">
-            <div class="form-heading"><h2>Publish an opportunity</h2><p>Only published records appear on the public internship page.</p></div>
-            <label>Title *<input name="title" required maxlength="190"></label>
-            <label>Department *<select name="department" required><option value="">Choose department</option><option>Software Development</option><option>Web Development</option><option>Mobile Application Development</option><option>IT Support and Networking</option><option>Cybersecurity</option><option>Data Analysis and Database Management</option><option>UI/UX and Graphic Design</option><option>Digital Marketing</option><option>Business Administration</option><option>Project Management</option><option>Research and Innovation</option><option>Digital Education and Training</option></select></label>
-            <label>Description *<textarea name="description" required maxlength="4000" rows="4"></textarea></label>
-            <label>Skills gained<textarea name="skills" maxlength="4000" rows="2"></textarea></label>
-            <label>Requirements<textarea name="requirements" maxlength="4000" rows="2"></textarea></label>
-            <div class="form-row"><label>Expected duration *<input name="expectedDuration" required maxlength="100"></label><label>Available places<input name="availablePlaces" type="number" min="0" max="65535"></label></div>
-            <div class="form-row"><label>Application deadline<input name="applicationDeadline" type="date"></label><label>Status *<select name="status" required><option>Coming Soon</option><option>Open</option><option>Closed</option></select></label></div>
-            <label class="consent"><input name="published" type="checkbox"><span>Publish this opportunity on the public site.</span></label>
-            <button class="btn btn-primary submit-btn" type="submit">Create opportunity</button><p class="form-message" role="status" aria-live="polite"></p>
-          </form>
-          <div><h2 class="admin-section-title">Current opportunities</h2><div id="adminOpportunityList" class="admin-list"></div></div>
-        </div>
-      </section>
-      <section id="applicationsPanel" class="admin-panel" hidden>
-        <div class="admin-filters"><label>Type<select id="typeFilter"><option value="">All types</option><option>Academic</option><option>Professional</option></select></label><label>Department<select id="departmentFilter"><option value="">All departments</option><option>Software Development</option><option>Web Development</option><option>Mobile Application Development</option><option>IT Support and Networking</option><option>Cybersecurity</option><option>Data Analysis and Database Management</option><option>UI/UX and Graphic Design</option><option>Digital Marketing</option><option>Business Administration</option><option>Project Management</option><option>Research and Innovation</option><option>Digital Education and Training</option></select></label></div>
-        <p id="applicationStatus" class="admin-feedback" role="status"></p><div id="applicationList" class="admin-list"></div>
-      </section>
+      <aside class="admin-sidebar" aria-label="Admin navigation">
+        <p class="admin-sidebar-label">WORKSPACE</p>
+        <button id="sidebarToggle" class="admin-sidebar-toggle" type="button" aria-expanded="true" aria-controls="adminNavigation">Hide navigation</button>
+        <nav class="admin-tabs" id="adminNavigation" role="navigation" aria-label="Dashboard sections">
+          <button class="admin-tab active" type="button" data-panel="overviewPanel">Overview</button>
+          <button class="admin-tab" type="button" data-panel="registrationsPanel">Students &amp; registrations</button>
+          <button class="admin-tab" type="button" data-panel="coursesPanel">Courses &amp; academy</button>
+          <button class="admin-tab" type="button" data-panel="opportunitiesPanel">Internship opportunities</button>
+          <button class="admin-tab" type="button" data-panel="applicationsPanel">Internship applications</button>
+          <button class="admin-tab" type="button" data-panel="servicesPanel">Service requests</button>
+          <button class="admin-tab" type="button" data-panel="trainingPanel">Corporate training</button>
+          <button class="admin-tab" type="button" data-panel="clientsPanel">Clients &amp; organizations</button>
+          <button class="admin-tab" type="button" data-panel="reportsPanel">Reports &amp; analytics</button>
+          <button class="admin-tab" type="button" data-panel="contentPanel">Website content</button>
+          <button class="admin-tab" type="button" data-panel="staffPanel">Staff &amp; administrators</button>
+          <button class="admin-tab" type="button" data-panel="settingsPanel">Settings</button>
+        </nav>
+      </aside>
+      <div class="admin-workspace">
+        <header class="admin-topbar">
+          <div><span class="eyebrow">MINDS DIGITAL LEGACY</span><h1 id="workspaceTitle">Overview</h1></div>
+          <div class="admin-user"><span id="adminIdentity">Administrator</span><button class="btn btn-secondary" id="logoutButton" type="button">Sign out</button></div>
+        </header>
+        <p class="admin-feedback" id="adminFeedback" role="status" aria-live="polite"></p>
+        <section id="overviewPanel" class="admin-panel">
+          <div id="overviewStats" class="admin-stats" aria-live="polite"></div>
+          <div class="admin-overview-grid">
+            <section class="admin-card"><h2>Registrations over time</h2><div id="registrationChart" class="admin-chart"></div></section>
+            <section class="admin-card"><h2>Internship applications over time</h2><div id="internshipChart" class="admin-chart"></div></section>
+            <section class="admin-card"><h2>Applications by department</h2><div id="departmentChart" class="admin-chart"></div></section>
+            <section class="admin-card"><h2>Registrations by course</h2><div id="courseChart" class="admin-chart"></div></section>
+            <section class="admin-card"><h2>Service requests by category</h2><div id="serviceChart" class="admin-chart"></div></section>
+            <section class="admin-card"><h2>Application status distribution</h2><div id="applicationStatusChart" class="admin-chart"></div></section>
+            <section class="admin-card admin-recent"><h2>Recent activity</h2><div id="recentActivity" class="admin-list"></div></section>
+          </div>
+        </section>
+        <section id="registrationsPanel" class="admin-panel" hidden>
+          <div class="admin-panel-heading"><div><h2>Student registrations</h2><p>View and update course registration records.</p></div></div>
+          <div class="admin-filters">
+            <label>Search<input id="registrationSearch" type="search" placeholder="Name, email, phone"></label>
+            <label>Course<input id="registrationCourseFilter" type="search" placeholder="Course title"></label>
+            <label>Status<select id="registrationStatusFilter"><option value="">All statuses</option><option>New</option><option>Contacted</option><option>Awaiting Payment</option><option>Enrolled</option><option>In Training</option><option>Completed</option><option>Cancelled</option><option>Closed</option></select></label>
+            <label>Level<select id="registrationLevelFilter"><option value="">All levels</option><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select></label>
+            <label>Format<select id="registrationModeFilter"><option value="">All formats</option><option>Individual</option><option>Group</option><option>Online</option><option>Corporate</option></select></label>
+            <label>From<input id="registrationFromFilter" type="date"></label><label>To<input id="registrationToFilter" type="date"></label>
+            <button class="btn btn-secondary" id="registrationExport" type="button">Export current page CSV</button>
+          </div>
+          <p id="registrationStatusMessage" class="admin-feedback" role="status" aria-live="polite"></p>
+          <div id="registrationList" class="admin-list"></div>
+          <div class="admin-pagination"><button id="registrationPrevious" class="btn btn-secondary" type="button">Previous</button><span id="registrationPageLabel"></span><button id="registrationNext" class="btn btn-secondary" type="button">Next</button></div>
+        </section>
+        <section id="coursesPanel" class="admin-panel" hidden>
+          <div class="admin-panel-heading"><div><h2>Courses &amp; academy</h2><p>Published courses are added to the public Academy catalog.</p></div></div>
+          <div class="admin-columns">
+            <form id="courseForm" class="registration-form admin-form">
+              <input name="id" type="hidden">
+              <label>Course title *<input name="title" required maxlength="190"></label>
+              <label>Category *<select name="category" required><option value="">Choose category</option><option>Computer Basics</option><option>Office Productivity</option><option>Programming</option><option>Web Development</option><option>Mobile Development</option><option>Graphic Design</option><option>UI/UX Design</option><option>Data Analysis</option><option>Digital Marketing</option><option>Networking</option><option>Cybersecurity</option><option>Cloud Computing</option><option>Business Digital Skills</option></select></label>
+              <div class="form-row"><label>Level *<select name="level" required><option>Beginner</option><option>Intermediate</option><option>Advanced</option><option>All levels</option></select></label><label>Duration *<input name="duration" required maxlength="100"></label></div>
+              <label>Description *<textarea name="description" required maxlength="4000" rows="4"></textarea></label>
+              <label>Learning objectives<textarea name="learningObjectives" maxlength="4000" rows="3"></textarea></label>
+              <label>Prerequisites<textarea name="prerequisites" maxlength="2000" rows="2"></textarea></label>
+              <div class="form-row"><label>Format *<select name="trainingFormat" required><option>Flexible</option><option>Individual</option><option>Group</option><option>Online</option><option>Corporate</option></select></label><label>Fee (RWF)<input name="feeRwf" type="number" min="0" step="0.01" value="0" required></label></div>
+              <label>Image URL (HTTPS)<input name="imageUrl" type="url" maxlength="500"></label>
+              <label class="consent"><input name="published" type="checkbox"><span>Publish on the public Academy page.</span></label>
+              <div class="admin-item-actions"><button class="btn btn-primary" type="submit">Save course</button><button class="btn btn-secondary" id="courseFormReset" type="button">Clear form</button></div>
+              <p class="form-message" role="status" aria-live="polite"></p>
+            </form>
+            <div><h3 class="admin-section-title">Course catalog</h3><div id="courseList" class="admin-list"></div></div>
+          </div>
+        </section>
+        <section id="opportunitiesPanel" class="admin-panel" hidden>
+          <div class="admin-columns">
+            <form id="opportunityForm" class="registration-form">
+              <div class="form-heading"><h2>Publish an opportunity</h2><p>Only published records appear on the public internship page.</p></div>
+              <label>Title *<input name="title" required maxlength="190"></label>
+              <label>Department *<select name="department" required><option value="">Choose department</option><option>Software Development</option><option>Web Development</option><option>Mobile Application Development</option><option>IT Support and Networking</option><option>Cybersecurity</option><option>Data Analysis and Database Management</option><option>UI/UX and Graphic Design</option><option>Digital Marketing</option><option>Business Administration</option><option>Project Management</option><option>Research and Innovation</option><option>Digital Education and Training</option></select></label>
+              <label>Description *<textarea name="description" required maxlength="4000" rows="4"></textarea></label>
+              <label>Skills gained<textarea name="skills" maxlength="4000" rows="2"></textarea></label>
+              <label>Requirements<textarea name="requirements" maxlength="4000" rows="2"></textarea></label>
+              <div class="form-row"><label>Expected duration *<input name="expectedDuration" required maxlength="100"></label><label>Available places<input name="availablePlaces" type="number" min="0" max="65535"></label></div>
+              <div class="form-row"><label>Application deadline<input name="applicationDeadline" type="date"></label><label>Status *<select name="status" required><option>Coming Soon</option><option>Open</option><option>Closed</option></select></label></div>
+              <label class="consent"><input name="published" type="checkbox"><span>Publish this opportunity on the public site.</span></label>
+              <button class="btn btn-primary submit-btn" type="submit">Create opportunity</button><p class="form-message" role="status" aria-live="polite"></p>
+            </form>
+            <div><h2 class="admin-section-title">Current opportunities</h2><div id="adminOpportunityList" class="admin-list"></div></div>
+          </div>
+        </section>
+        <section id="applicationsPanel" class="admin-panel" hidden>
+          <div class="admin-filters">
+            <label>Search<input id="applicationSearch" type="search" placeholder="Applicant, email, phone, school"></label>
+            <label>Type<select id="typeFilter"><option value="">All types</option><option>Academic</option><option>Professional</option></select></label>
+            <label>Department<select id="departmentFilter"><option value="">All departments</option><option>Software Development</option><option>Web Development</option><option>Mobile Application Development</option><option>IT Support and Networking</option><option>Cybersecurity</option><option>Data Analysis and Database Management</option><option>UI/UX and Graphic Design</option><option>Digital Marketing</option><option>Business Administration</option><option>Project Management</option><option>Research and Innovation</option><option>Digital Education and Training</option></select></label>
+            <label>Status<select id="applicationStatusFilter"><option value="">All statuses</option><option>New</option><option>Under review</option><option>Shortlisted</option><option>Interview Scheduled</option><option>Accepted</option><option>Rejected</option><option>Waitlisted</option><option>In Progress</option><option>Completed</option></select></label>
+            <label>Education<select id="applicationEducationFilter"><option value="">All levels</option><option>High school</option><option>TVET</option><option>College</option><option>University</option><option>Graduate</option><option>Career changer</option></select></label>
+          </div>
+          <p id="applicationStatus" class="admin-feedback" role="status" aria-live="polite"></p><div id="applicationList" class="admin-list"></div>
+          <div class="admin-pagination"><button id="applicationPrevious" class="btn btn-secondary" type="button">Previous</button><span id="applicationPageLabel"></span><button id="applicationNext" class="btn btn-secondary" type="button">Next</button></div>
+        </section>
+        <section id="servicesPanel" class="admin-panel" hidden>
+          <div class="admin-panel-heading"><div><h2>Technology service requests</h2><p>Review and track client service requests and project progress.</p></div></div>
+          <div class="admin-filters"><label>Search<input id="serviceSearch" type="search" placeholder="Client, organization or contact"></label><label>Category<select id="serviceCategoryFilter"><option value="">All categories</option><option>Software Development</option><option>Website Development</option><option>Mobile Application Development</option><option>IT Support and Infrastructure</option><option>Data and Business Intelligence</option><option>Creative and Digital Services</option><option>Cybersecurity and Digital Safety</option><option>Other Custom Solutions</option></select></label><label>Status<select id="serviceStatusFilter"><option value="">All statuses</option><option>New Request</option><option>Contacted</option><option>Consultation Scheduled</option><option>Proposal Sent</option><option>Negotiation</option><option>Approved</option><option>In Progress</option><option>Completed</option><option>Rejected</option><option>Cancelled</option><option>Under review</option><option>Closed</option></select></label></div>
+          <p id="serviceStatusMessage" class="admin-feedback" role="status"></p><div id="serviceList" class="admin-list"></div>
+          <div class="admin-pagination"><button id="servicePrevious" class="btn btn-secondary" type="button">Previous</button><span id="servicePageLabel"></span><button id="serviceNext" class="btn btn-secondary" type="button">Next</button></div>
+        </section>
+        <section id="trainingPanel" class="admin-panel" hidden>
+          <div class="admin-panel-heading"><div><h2>Corporate training requests</h2><p>Review organizations, training requirements, proposals, and schedules.</p></div></div>
+          <div class="admin-filters"><label>Search<input id="trainingSearch" type="search" placeholder="Organization, topic or contact"></label><label>Status<select id="trainingStatusFilter"><option value="">All statuses</option><option>New Request</option><option>Contacted</option><option>Proposal Sent</option><option>Approved</option><option>Scheduled</option><option>In Progress</option><option>Completed</option><option>Cancelled</option><option>Under review</option><option>Closed</option></select></label></div>
+          <p id="trainingStatusMessage" class="admin-feedback"></p><div id="trainingList" class="admin-list"></div>
+          <div class="admin-pagination"><button id="trainingPrevious" class="btn btn-secondary" type="button">Previous</button><span id="trainingPageLabel"></span><button id="trainingNext" class="btn btn-secondary" type="button">Next</button></div>
+        </section>
+        <section id="clientsPanel" class="admin-panel" hidden>
+          <div class="admin-panel-heading"><div><h2>Clients &amp; organizations</h2><p>Service and corporate training submissions are linked to deduplicated client profiles.</p></div></div>
+          <div class="admin-filters"><label>Search<input id="clientSearch" type="search" placeholder="Name, email or phone"></label><label>Type<select id="clientTypeFilter"><option value="">All types</option><option>Individual</option><option>Business</option><option>School</option><option>University</option><option>NGO</option><option>Government</option><option>Other</option></select></label><label>Status<select id="clientStatusFilter"><option value="">All statuses</option><option>Active</option><option>Prospect</option><option>Inactive</option></select></label></div>
+          <div class="admin-columns">
+            <form id="clientForm" class="registration-form admin-form">
+              <input name="id" type="hidden">
+              <h3 class="admin-section-title">Client profile</h3>
+              <label>Name / organization *<input name="name" required maxlength="190"></label>
+              <label>Type *<select name="organizationType" required><option>Individual</option><option>Business</option><option>School</option><option>University</option><option>NGO</option><option>Government</option><option>Other</option></select></label>
+              <label>Email<input name="email" type="email" maxlength="190"></label>
+              <label>Phone<input name="phone" maxlength="40"></label>
+              <label>Assigned staff<select name="assignedAdminUserId"><option value="">Unassigned</option></select></label>
+              <label>Status *<select name="status" required><option>Prospect</option><option>Active</option><option>Inactive</option></select></label>
+              <label>Internal notes<textarea name="internalNotes" maxlength="4000" rows="3"></textarea></label>
+              <div class="admin-item-actions"><button class="btn btn-primary" type="submit">Save client</button><button class="btn btn-secondary" id="clientFormReset" type="button">Clear form</button></div>
+              <p class="form-message" role="status" aria-live="polite"></p>
+            </form>
+            <div><h3 class="admin-section-title">Client directory</h3><div id="clientList" class="admin-list"></div></div>
+          </div>
+          <div class="admin-pagination"><button id="clientPrevious" class="btn btn-secondary" type="button">Previous</button><span id="clientPageLabel"></span><button id="clientNext" class="btn btn-secondary" type="button">Next</button></div>
+          <section class="admin-card"><h3 class="admin-section-title">Client history</h3><div id="clientHistory" class="admin-list"></div></section>
+        </section>
+        <section id="reportsPanel" class="admin-panel" hidden>
+          <div class="admin-panel-heading"><div><h2>Reports &amp; analytics</h2><p>Filter live records by date and export CSV reports.</p></div></div>
+          <div class="admin-card">
+            <div class="admin-filters">
+              <label>Report<select id="reportType"><option value="registrations">Student registrations</option><option value="courses">Course popularity</option><option value="internships">Internship applications &amp; acceptance</option><option value="services">Technology service requests</option><option value="corporate-training">Corporate training</option><option value="clients">Client activity</option></select></label>
+              <label>From<input id="reportFrom" type="date"></label><label>To<input id="reportTo" type="date"></label>
+              <button id="generateReport" class="btn btn-primary" type="button">Generate report</button>
+              <button id="exportReport" class="btn btn-secondary" type="button" disabled>Export CSV</button>
+            </div>
+            <p class="form-small">Service values are estimates and agreed project values; training values are proposed and agreed fees. The system does not record actual payments.</p>
+            <p id="reportMessage" class="admin-feedback" role="status" aria-live="polite"></p>
+            <div id="reportResults" class="admin-report-table"></div>
+          </div>
+        </section>
+        <section id="contentPanel" class="admin-panel" hidden>
+          <div class="admin-panel-heading"><div><h2>Website content</h2><p>Published announcements appear on the public homepage.</p></div></div>
+          <div class="admin-columns">
+            <form id="announcementForm" class="registration-form admin-form">
+              <input name="id" type="hidden">
+              <label>Title *<input name="title" required maxlength="190"></label>
+              <label>Announcement *<textarea name="body" required maxlength="4000" rows="5"></textarea></label>
+              <div class="form-row"><label>Starts at<input name="startsAt" type="datetime-local"></label><label>Ends at<input name="endsAt" type="datetime-local"></label></div>
+              <label class="consent"><input name="published" type="checkbox"><span>Publish on the public homepage.</span></label>
+              <div class="admin-item-actions"><button class="btn btn-primary" type="submit">Save announcement</button><button class="btn btn-secondary" id="announcementFormReset" type="button">Clear form</button></div>
+              <p class="form-message" role="status" aria-live="polite"></p>
+            </form>
+            <div><h3 class="admin-section-title">Announcements</h3><div id="announcementList" class="admin-list"></div></div>
+          </div>
+        </section>
+        <section id="staffPanel" class="admin-panel" hidden>
+          <div class="admin-panel-heading"><div><h2>Staff &amp; administrators</h2><p>Super Admin only. Password resets revoke the affected account's active sessions.</p></div></div>
+          <div class="admin-columns">
+            <form id="staffForm" class="registration-form admin-form">
+              <h3 class="admin-section-title">Create administrator</h3>
+              <label>Username *<input name="username" required minlength="3" maxlength="64" pattern="[A-Za-z0-9._-]+"></label>
+              <label>Email *<input name="email" type="email" required maxlength="190"></label>
+              <label>Temporary password *<input name="password" type="password" required minlength="12" maxlength="128" autocomplete="new-password"></label>
+              <label>Role *<select name="role" required><option>Administrator</option><option>Staff</option><option>Super Admin</option></select></label>
+              <button class="btn btn-primary" type="submit">Create account</button>
+              <p class="form-message" role="status" aria-live="polite"></p>
+            </form>
+            <div><h3 class="admin-section-title">Accounts</h3><div id="staffList" class="admin-list"></div></div>
+          </div>
+          <section class="admin-card admin-audit"><h3 class="admin-section-title">Recent administrator activity</h3><div id="auditLogList" class="admin-list"></div></section>
+        </section>
+        <section id="settingsPanel" class="admin-panel" hidden><div class="admin-card"><h2>Settings</h2><p>System settings are managed through the server environment and database.</p></div></section>
+      </div>
     </section>
   </main>
   <script type="module" src="/js/admin/main.js"></script>

@@ -13,4 +13,12 @@ async function createRegistration(registration) {
   return result.insertId;
 }
 
-module.exports = { createRegistration };
+async function isPublishedCourse(title) {
+  const [rows] = await getPool().execute(
+    "SELECT id FROM courses WHERE title = ? AND published = 1 LIMIT 1",
+    [title]
+  );
+  return rows.length > 0;
+}
+
+module.exports = { createRegistration, isPublishedCourse };
